@@ -1,0 +1,22 @@
+# Streamlit settings. Picked up automatically when you run `streamlit run frontend/app.py` from the project root.
+
+[server]
+# Stops Streamlit from walking every installed package (e.g. transformers) looking for files to watch.
+# That walk is what printed the long "No module named 'torchvision'" traces in the console.
+# Set to "auto" while developing if you want hot reload on save.
+fileWatcherType = "none"
+maxUploadSize = 50            # MB
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "light"
+primaryColor = "#4F46E5"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F6FB"
+textColor = "#1F2937"
+font = "sans serif"

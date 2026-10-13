@@ -1,0 +1,9 @@
+streamlit>=1.46
+pandas
+openpyxl
+psycopg2-binary
+pgvector
+groq
+sentence-transformers
+numpy
+python-dotenv
