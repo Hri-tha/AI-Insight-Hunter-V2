@@ -7,7 +7,7 @@ CSS = """
 #MainMenu, footer {visibility: hidden;}
 
 /* brand bar */
-.brand {display:flex; align-items:center; gap:.75rem; margin-bottom:1rem;}
+.brand {display:flex; align-items:center; gap:.75rem; margin-top:50px; margin-bottom:1rem;}
 .brand .logo {width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
   font-size:1.4rem; background:linear-gradient(135deg,#4F46E5,#7C3AED); box-shadow:0 6px 16px rgba(79,70,229,.35);}
 .brand .name {font-size:1.35rem; font-weight:700; color:#111827; line-height:1.1;}
