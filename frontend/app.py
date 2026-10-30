@@ -26,6 +26,16 @@ from frontend import ui
 log = logging.getLogger("insight.app")
 
 SEV_BADGE = {"Critical": "red", "High": "red", "Medium": "orange", "Low": "gray"}
+
+# Display order for problem cards: Investigate first, then Monitor; inside each, most severe first, then most reviews
+DECISION_RANK = {"INVESTIGATE": 0, "MONITOR": 1}
+SEVERITY_RANK = {"Critical": 0, "High": 1, "Medium": 2, "Low": 3}
+
+
+def card_order(p):
+    return (DECISION_RANK.get(p["decision"], 9),
+            SEVERITY_RANK.get(p.get("severity"), 9),
+            -(p.get("reviews") or 0))
 VERDICT_ICON = {"SUPPORTED": "🟢", "MIXED": "🟡", "INCONCLUSIVE": "⚪"}
 FILTER_COLS = {"Category": "category", "Brand": "brand", "Segment": "segment"}
 SUGGESTIONS = ["What is the biggest problem?", "Which problems are rising fastest?", "Chart reviews per problem"]
@@ -180,7 +190,7 @@ def dashboard():
 
         # ------------------------------------------------------------------------- 4. tiles
         problems = results["problems"]
-        shown = [p for p in problems if p["decision"] != "INSUFFICIENT_DATA"]
+        shown = sorted([p for p in problems if p["decision"] != "INSUFFICIENT_DATA"], key=card_order)
         t1, t2, t3, t4 = st.columns(4)
         t1.metric("Reviews analysed", f"{meta['total_reviews']:,}")
         t1.caption(f"of {meta['reviews_uploaded']:,} uploaded")
